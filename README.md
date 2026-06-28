@@ -120,6 +120,68 @@ docs/       index.html               # prebuilt page (GitHub Pages serves this)
 To refresh with newer games: re-run step 3 (crawl) above, commit the updated
 `data/`, and push — the workflow redeploys.
 
+## Automated refresh (cron)
+
+[`scripts/refresh.sh`](scripts/refresh.sh) runs the whole loop unattended:
+**refresh active subs → trim snapshot → analyze → rebuild page → commit → push**
+(pushing triggers the Pages workflow). It only commits when something changed,
+and a lock file skips overlapping runs.
+
+Post-cutoff **no new submissions appear**, so it doesn't BFS-discover — it just
+re-fetches each top team's active subs (via
+[`crawl/refresh_recent.py`](crawl/refresh_recent.py)) to pick up new games. To
+respect Kaggle's burst limit it splits the work by rank, exactly like the
+original loop:
+
+| Slice | Ranks | Cadence | ≈ Kaggle calls / pass |
+| --- | --- | --- | --- |
+| Fast | 1–30 | every pass (~30 min) | ~90 |
+| Slow | 31–100 | every ~90 min | +~210 |
+
+(A 0.4s throttle between calls + automatic 429 backoff keep it well under the
+ceiling.) It writes into a gitignored `raw/` cache and trims a ~60 MB `data/`
+snapshot from it via [`scripts/make_snapshot.py`](scripts/make_snapshot.py), so
+commits stay small. Tunable via env: `TOP_N`, `FAST_END`, `SLOW_EVERY_MIN`,
+`PER_CALL_DELAY`, `PY`.
+
+**Prerequisites in the (cron) environment:**
+
+1. **Kaggle creds** — `~/.kaggle/kaggle.json` (chmod 600) or `KAGGLE_USERNAME`
+   / `KAGGLE_KEY`.
+2. **Non-interactive git push auth** — a credential store seeded once:
+   ```bash
+   git config --global credential.helper store
+   git push            # enter username + a PAT once; saved to ~/.git-credentials
+   ```
+   (or bake a PAT into the remote URL, or use a passphrase-less SSH key). cron
+   must run as the **same user** so it reads the same `~/.git-credentials`.
+
+**Run it once by hand first** (the cold-start pass fetches all top-100 active
+subs and takes a couple of minutes; later passes are fast):
+
+```bash
+./scripts/refresh.sh && tail -n 30 refresh.log
+```
+
+**Schedule it.** A single entry every 30 min gives fast-every-pass and
+slow-every-~90-min automatically. WSL doesn't start cron on its own:
+
+```bash
+sudo service cron start                       # start now
+# auto-start on WSL launch — add to /etc/wsl.conf:
+#   [boot]
+#   command = "service cron start"
+```
+
+Then `crontab -e` and add:
+
+```cron
+*/30 * * * * /path/to/orbit-wars-postcutoff/scripts/refresh.sh
+```
+
+Watch progress with `tail -f refresh.log`. To go gentler on the API, raise the
+cron interval and/or `SLOW_EVERY_MIN`.
+
 ## Data provenance & privacy
 
 The bundled data is a snapshot of the public Orbit Wars leaderboard and episode

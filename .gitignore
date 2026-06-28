@@ -19,6 +19,12 @@ kaggle.json
 dist_site/
 *.tmp
 
+# Full crawl cache produced by scripts/refresh.sh — large (~1.7 GB), local only.
+# The committed data/ snapshot is the trimmed copy made from this.
+raw/
+refresh.log
+.refresh.lock
+
 # Do NOT ignore data/ — the snapshot is committed on purpose.
 # A fresh crawl writes full-size episode records here; if you re-crawl and
 # don't want to commit the larger files, ignore them locally instead.
