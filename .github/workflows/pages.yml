@@ -1,0 +1,48 @@
+name: Build & deploy dashboard
+
+# Rebuilds docs/index.html from the committed analysis JSON and publishes it to
+# GitHub Pages on every push to main. The committed docs/index.html means the
+# site also works the instant the repo is created (before this ever runs).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/postcutoff_analysis.json"
+      - "site/build_static.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build static page from the committed analysis snapshot
+        run: python site/build_static.py --input data/postcutoff_analysis.json --output docs/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

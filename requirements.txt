@@ -1,0 +1,9 @@
+# Reproducing the dashboard from the bundled snapshot needs NOTHING here:
+# analysis/postcutoff_analysis.py and site/build_static.py use only the Python
+# standard library (Python 3.10+).
+#
+# The single third-party dependency below is the Kaggle API, used ONLY by
+# crawl/fetch_data.py to fetch fresh leaderboard + episode data. Install it
+# just for re-crawling:
+#     pip install -r requirements.txt
+kaggle>=1.6.17

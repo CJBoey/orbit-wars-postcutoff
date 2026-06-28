@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Kaggle credentials — never commit
+kaggle.json
+.kaggle/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local build scratch (the committed docs/index.html is intentional)
+dist_site/
+*.tmp
+
+# Do NOT ignore data/ — the snapshot is committed on purpose.
+# A fresh crawl writes full-size episode records here; if you re-crawl and
+# don't want to commit the larger files, ignore them locally instead.
