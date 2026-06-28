@@ -979,6 +979,75 @@ def _build_rank_evolution(
     return rows
 
 
+def _build_actual_trajectory(
+    archive_dir: Path, teams: list[TeamInfo],
+) -> list[dict]:
+    """Per-submission **actual** rating over time, straight from the bundled
+    leaderboard history (``lb_history.json``) — NOT recomputed from
+    episodes. Each top-team row is the live LB score Kaggle reported at that
+    instant; we segment a team's series into one trace per distinct
+    ``submission_date`` (a new submission ⇒ a new segment). ``seg`` is a
+    1-based per-team submission ordinal so the renderer can draw one line per
+    submission."""
+    p = archive_dir / "lb_history.json"
+    if not p.exists():
+        return []
+    hist = json.loads(p.read_text())
+    name_by_tid = {t.team_id: t.team_name for t in teams}
+    out: list[dict] = []
+    for tid_str, rows in hist.items():
+        tid = int(tid_str)
+        if tid not in name_by_tid:
+            continue
+        seg = 0
+        prev_sd = object()
+        for r in sorted(rows, key=lambda r: r["ts"]):
+            sd = r.get("submission_date")
+            if sd != prev_sd:
+                seg += 1
+                prev_sd = sd
+            out.append({
+                "team_id": tid,
+                "team_name": name_by_tid[tid],
+                "submission_date": sd,
+                "seg": seg,
+                "ts_utc": r["ts"],
+                "score": r["score"],
+            })
+    return out
+
+
+def _build_sub_trajectory(
+    archive_dir: Path, subs: list[SubInfo],
+) -> list[dict]:
+    """Per-submission **actual** rating over time from the append-only
+    ``sub_score_history.json`` — each point is a real ``public_score`` Kaggle
+    reported for that submission, logged once per refresh. Unlike the recomputed
+    Kaggle-Elo, nothing here is inferred from games; it's a genuinely observed
+    series that fills in as the refresh loop runs. Restricted to subs still in
+    the current top-N."""
+    p = archive_dir / "sub_score_history.json"
+    if not p.exists():
+        return []
+    hist = json.loads(p.read_text())
+    meta = {s.submission_id: s for s in subs}
+    out: list[dict] = []
+    for sid_str, pts in hist.items():
+        sid = int(sid_str)
+        info = meta.get(sid)
+        if info is None:
+            continue
+        for r in sorted(pts, key=lambda r: r["ts"]):
+            out.append({
+                "submission_id": sid,
+                "team_id": info.team_id,
+                "team_name": info.team_name,
+                "ts_utc": r["ts"],
+                "score": r["score"],
+            })
+    return out
+
+
 # ---- driver --------------------------------------------------------------
 
 
@@ -1017,6 +1086,10 @@ def run(
     seat = _seat_stats(teams, subs, episodes)
     match_volume = _match_volume_stats(teams, subs, episodes)
     rank_evo = _build_rank_evolution(archive_dir, {t.team_id for t in teams}, cutoff)
+    trajectory_actual = _build_actual_trajectory(archive_dir, teams)
+    trajectory_sub_actual = _build_sub_trajectory(archive_dir, subs)
+    print(f"[postcutoff] actual trajectory: team={len(trajectory_actual)} "
+          f"sub={len(trajectory_sub_actual)} pts")
 
     # Team-level aggregation + bootstrap-based tier clustering.
     team_kelo = _compute_team_kaggle_elo(ratings_kaggle, subs)
@@ -1071,6 +1144,8 @@ def run(
         "tiers": tiers,
         "trajectory": trajectory_glicko,
         "trajectory_kaggle": trajectory_kaggle,
+        "trajectory_actual": trajectory_actual,
+        "trajectory_sub_actual": trajectory_sub_actual,
         "bootstrap": {str(sid): info for sid, info in bootstrap.items()},
         "bootstrap_team": {str(tid): info for tid, info in bootstrap_team.items()},
         "seat_stats": seat,

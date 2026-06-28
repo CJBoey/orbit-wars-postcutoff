@@ -73,7 +73,8 @@ refresh_slice() {  # $1=rank start  $2=rank end
   fi
 
   # Trim the raw cache into the small committed snapshot, then analyze + build.
-  "$PY" scripts/make_snapshot.py --raw "$RAW" --out data --top-n "$TOP_N"
+  "$PY" scripts/make_snapshot.py --raw "$RAW" --out data --top-n "$TOP_N" \
+      --cutoff-utc "$CUTOFF"
   "$PY" -m analysis.postcutoff_analysis --archive-dir data --top-n "$TOP_N" \
       --bootstrap-reps 200 --min-games 50 --cutoff-utc "$CUTOFF"
   "$PY" site/build_static.py --input data/postcutoff_analysis.json \

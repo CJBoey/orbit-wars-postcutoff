@@ -20,7 +20,7 @@ auto light/dark with a manual toggle) with four tabs:
 | --- | --- |
 | **Final-rank tiers (team)** | Teams bucketed by bootstrap lock-in probability (Locked Top 3 / Prize / Gold / longshot). |
 | **Predicted final rank (per sub)** | Each submission's recomputed Kaggle-Elo, current LB delta, and bootstrap rank CI. |
-| **Per-sub rating trajectory** | Kaggle-Elo over post-cutoff time, game-by-game, anchored at the live LB score. |
+| **Per-sub rating trajectory (actual LB)** | The real Kaggle leaderboard score over post-cutoff time, one line per submission — straight from the LB snapshots, not recomputed. |
 | **Match volume & winrates** | Per-team game counts, 2p/4p split and ratio, and winrates — each team row expands to its submissions. |
 
 ## Why this is reproducible

@@ -31,8 +31,8 @@ _KEEP_KEYS = (
     "generated_at_utc", "cutoff_utc", "top_n", "bootstrap_reps",
     "trajectory_bucket_hours", "min_games_per_sub",
     "teams", "submissions", "episode_counts", "kaggle_elo",
-    "ratings_kaggle", "tiers", "trajectory_kaggle", "bootstrap",
-    "match_volume",
+    "ratings_kaggle", "tiers", "trajectory_actual", "trajectory_sub_actual",
+    "bootstrap", "match_volume",
 )
 
 
@@ -41,15 +41,27 @@ def trim_payload(pc: dict) -> dict:
     return {k: pc[k] for k in _KEEP_KEYS if k in pc}
 
 
-# Trajectory can still be the bulk of the payload; thin it to the top-K subs by
-# latest Kaggle-Elo so the chart stays readable and the file stays small.
+# Both actual-rating trajectories can be the bulk of the payload; thin each to
+# the top-K traces by latest score so the charts stay readable and the inlined
+# file stays small. `key_fn` maps a row to its trace identity (team or sub).
+def _thin_traj(pc: dict, traj_key: str, key_fn, top_k: int) -> None:
+    traj = pc.get(traj_key, [])
+    last: dict = {}  # trace identity -> latest row, by ts
+    for r in traj:
+        k = key_fn(r)
+        cur = last.get(k)
+        if cur is None or r["ts_utc"] >= cur["ts_utc"]:
+            last[k] = r
+    ranked = sorted(last.items(), key=lambda kv: -(kv[1].get("score") or 0))
+    keep = {k for k, _ in ranked[:top_k]}
+    pc[traj_key] = [r for r in traj if key_fn(r) in keep]
+
+
 def thin_trajectory(pc: dict, top_k: int) -> None:
-    """In-place: keep only trajectory rows for the top-K subs by latest rating."""
-    kelo = pc.get("ratings_kaggle", {})
-    ranked = sorted(kelo.items(), key=lambda kv: -(kv[1].get("rating") or 0))
-    keep = {int(sid) for sid, _ in ranked[:top_k]}
-    traj = pc.get("trajectory_kaggle", [])
-    pc["trajectory_kaggle"] = [r for r in traj if int(r["submission_id"]) in keep]
+    """In-place: thin the team trajectory to the top-K teams, and the per-sub
+    trajectory to the top-K submissions, both by latest score."""
+    _thin_traj(pc, "trajectory_actual", lambda r: r["team_id"], top_k)
+    _thin_traj(pc, "trajectory_sub_actual", lambda r: r["submission_id"], top_k)
     pc["_traj_top_k"] = top_k
 
 
@@ -139,8 +151,6 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
 <script id="payload" type="application/json">__PAYLOAD__</script>
 <script>
 const PC = JSON.parse(document.getElementById('payload').textContent);
-const subById = {};
-(PC.submissions||[]).forEach(s => subById[s.submission_id] = s);
 const teamById = {};
 (PC.teams||[]).forEach(t => teamById[t.team_id] = t);
 
@@ -273,35 +283,66 @@ function renderPredicted(el) {
 }
 
 // ---- tab: rating trajectory ---------------------------------------------
-function renderTrajectory(el) {
-  el.innerHTML = '<p class="note">Per-submission <b>Kaggle-Elo</b> recomputed '+
-    'game-by-game from the post-cutoff episode log (K='+(PC.kaggle_elo||{}).K+
-    ', 200-scale, anchored at current LB score). Top subs by latest rating; '+
-    'bucket = '+PC.trajectory_bucket_hours+'h.</p><div id="trajChart" class="chart"></div>';
-  const traj = PC.trajectory_kaggle||[];
-  const bySub = {};
-  traj.forEach(r => { (bySub[r.submission_id] = bySub[r.submission_id]||[]).push(r); });
-  const traces = Object.entries(bySub).map(([sid, pts]) => {
-    pts.sort((a,b)=>new Date(a.bucket_end_utc)-new Date(b.bucket_end_utc));
-    const s = subById[sid]||{};
-    return {
-      x: pts.map(p=>p.bucket_end_utc), y: pts.map(p=>p.rating),
-      mode:'lines', name: ((s.team_name||sid).slice(0,16)+' · '+sid),
-      hovertemplate:'%{y:.1f}<extra>'+((s.team_name||sid))+'</extra>',
-    };
-  });
-  const cut = PC.cutoff_utc;
-  Plotly.newPlot('trajChart', traces, {
+// Shared line-chart helper for both actual-rating tabs. `rows` carry
+// {ts_utc, score} plus whatever grouping/label the caller resolves.
+function plotTrajectory(divId, traces) {
+  Plotly.newPlot(divId, traces, {
     paper_bgcolor:TH.paper, plot_bgcolor:TH.paper, font:{color:TH.fg},
     margin:{t:10,r:10,b:40,l:50}, showlegend:true,
     legend:{font:{size:10}},
     xaxis:{gridcolor:TH.grid, title:'time (UTC)'},
-    yaxis:{gridcolor:TH.grid, title:'Kaggle-Elo'},
-    shapes:[{type:'line', x0:cut, x1:cut, yref:'paper', y0:0, y1:1,
-             line:{color:'red', dash:'dash'}}],
-    annotations:[{x:cut, y:1, yref:'paper', text:'cutoff', showarrow:false,
-                  font:{color:'red'}}],
+    yaxis:{gridcolor:TH.grid, title:'LB score'},
   }, {responsive:true, displayModeBar:false});
+}
+
+function renderTeamTrajectory(el) {
+  el.innerHTML = '<p class="note"><b>Actual</b> Kaggle leaderboard score per '+
+    '<b>team</b> over post-cutoff time — straight from the LB snapshots, '+
+    '<b>not</b> recomputed from episodes. The team score is its leading '+
+    'submission, so this is one line per team. Top '+(PC._traj_top_k||'')+
+    ' by latest score.</p><div id="teamTrajChart" class="chart"></div>';
+  const traj = PC.trajectory_actual||[];
+  const byTeam = {};
+  traj.forEach(r => { (byTeam[r.team_id] = byTeam[r.team_id]||[]).push(r); });
+  const traces = Object.values(byTeam).map(pts => {
+    pts.sort((a,b)=>new Date(a.ts_utc)-new Date(b.ts_utc));
+    const p0 = pts[0];
+    return {
+      x: pts.map(p=>p.ts_utc), y: pts.map(p=>p.score),
+      mode:'lines', name: (p0.team_name||p0.team_id).slice(0,18),
+      hovertemplate:'%{y:.1f}<extra>'+(p0.team_name||p0.team_id)+'</extra>',
+    };
+  });
+  plotTrajectory('teamTrajChart', traces);
+}
+
+function renderSubTrajectory(el) {
+  const traj = PC.trajectory_sub_actual||[];
+  el.innerHTML = '<p class="note"><b>Actual</b> per-<b>submission</b> '+
+    'public_score over time — each point is a real score Kaggle reported for '+
+    'that submission, logged once per refresh (<b>not</b> recomputed from '+
+    'games). Two lines per team. This series starts when logging was switched '+
+    'on and <b>fills in as the refresh loop runs</b>, so it is sparse at '+
+    'first. Top '+(PC._traj_top_k||'')+' subs by latest score.</p>'+
+    '<div id="subTrajChart" class="chart"></div>';
+  if (!traj.length) {
+    el.innerHTML += '<p class="note">No per-sub history captured yet — check '+
+      'back after the next few refreshes.</p>';
+    return;
+  }
+  const bySub = {};
+  traj.forEach(r => { (bySub[r.submission_id] = bySub[r.submission_id]||[]).push(r); });
+  const traces = Object.entries(bySub).map(([sid, pts]) => {
+    pts.sort((a,b)=>new Date(a.ts_utc)-new Date(b.ts_utc));
+    const p0 = pts[0];
+    return {
+      x: pts.map(p=>p.ts_utc), y: pts.map(p=>p.score),
+      mode: pts.length>1 ? 'lines+markers' : 'markers',
+      name: (p0.team_name||p0.team_id).slice(0,14)+' · '+sid,
+      hovertemplate:'%{y:.1f}<extra>'+(p0.team_name||p0.team_id)+'<br>sub '+sid+'</extra>',
+    };
+  });
+  plotTrajectory('subTrajChart', traces);
 }
 
 // ---- tab: match volume & winrates ---------------------------------------
@@ -393,7 +434,8 @@ function renderVolume(el) {
 const TABS = [
   ['Final-rank tiers (team)', renderTiers],
   ['Predicted final rank (per sub)', renderPredicted],
-  ['Per-sub rating trajectory', renderTrajectory],
+  ['Team rating over time (actual LB)', renderTeamTrajectory],
+  ['Per-sub rating over time (actual)', renderSubTrajectory],
   ['Match volume & winrates', renderVolume],
 ];
 let activeIdx = 0;
