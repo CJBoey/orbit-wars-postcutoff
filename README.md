@@ -142,7 +142,26 @@ original loop:
 ceiling.) It writes into a gitignored `raw/` cache and trims a ~60 MB `data/`
 snapshot from it via [`scripts/make_snapshot.py`](scripts/make_snapshot.py), so
 commits stay small. Tunable via env: `TOP_N`, `FAST_END`, `SLOW_EVERY_MIN`,
-`PER_CALL_DELAY`, `PY`.
+`PER_CALL_DELAY`, `EP_EVERY_MIN`, `PY`.
+
+### Commit cadence (why episodes lag the analysis)
+
+The refresh splits what it commits, on purpose:
+
+| What | Size | Committed |
+| --- | --- | --- |
+| `postcutoff_analysis.json` + `docs/index.html` + leaderboard/summary | small | **every pass** (the live dashboard tracks each refresh) |
+| `submission_episodes/` (the per-match snapshot) | ~55 MB | **at most once/day** (`EP_EVERY_MIN`, default 1440 min) |
+
+The episode snapshot is large and changes every pass, so committing it each cron
+run (every ~30 min) would balloon git history by tens of MB per pass. The
+dashboard inputs are tiny, so we push those continuously and let the heavy
+episodes lag — a once-a-day snapshot is recent enough for anyone to re-run the
+full pipeline, without the per-pass blob churn. (Held-back episodes still sit in
+the working tree; the next daily window simply commits their latest state.) The
+evaluation window is short — ~10 days — so a daily episode snapshot keeps the
+whole post-cutoff record without ever needing history surgery. Set
+`EP_EVERY_MIN=0` to commit episodes every pass instead.
 
 **Prerequisites in the (cron) environment:**
 

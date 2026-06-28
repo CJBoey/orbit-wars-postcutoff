@@ -32,9 +32,11 @@ FAST_END="${FAST_END:-30}"
 SLOW_EVERY_MIN="${SLOW_EVERY_MIN:-85}"     # ~90 min, allowing for cron jitter
 CUTOFF="${CUTOFF:-2026-06-24T00:00:00Z}"
 PER_CALL_DELAY="${PER_CALL_DELAY:-0.4}"
+EP_EVERY_MIN="${EP_EVERY_MIN:-1440}"       # commit the heavy episode snapshot ≤ once/day
 RAW="$REPO/raw"
 LOG="$REPO/refresh.log"
 STAMP="$RAW/.slow_stamp"
+EP_STAMP="$RAW/.episodes_stamp"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 # Single instance: skip if a previous pass is still running.
@@ -78,7 +80,20 @@ refresh_slice() {  # $1=rank start  $2=rank end
       --output docs/index.html
 
   # Commit + push only if something changed.
+  #
+  # The episode snapshot (data/submission_episodes/) is ~55 MB and changes every
+  # pass; committing it each cron run would balloon git history. The analysis JSON
+  # + page are tiny, so we commit those every pass (the live dashboard tracks each
+  # refresh) and the heavy episodes at most once/day — recent enough for anyone to
+  # re-run the pipeline, without per-pass blob churn. See README "Commit cadence".
   git add -A data docs
+  if [ -f "$EP_STAMP" ] && [ -z "$(find "$EP_STAMP" -mmin +"$EP_EVERY_MIN" 2>/dev/null)" ]; then
+    git reset -q -- data/submission_episodes   # hold episodes back (still on disk, uncommitted)
+    echo "[episodes] held — committed ≤ once / $EP_EVERY_MIN min"
+  else
+    touch "$EP_STAMP"
+    echo "[episodes] committing daily snapshot"
+  fi
   if git diff --cached --quiet; then
     echo "no changes — nothing to push"
   else
