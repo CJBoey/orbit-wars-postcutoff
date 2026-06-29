@@ -33,6 +33,8 @@ SLOW_EVERY_MIN="${SLOW_EVERY_MIN:-85}"     # ~90 min, allowing for cron jitter
 CUTOFF="${CUTOFF:-2026-06-24T00:00:00Z}"
 PER_CALL_DELAY="${PER_CALL_DELAY:-0.4}"
 EP_EVERY_MIN="${EP_EVERY_MIN:-1440}"       # commit the heavy episode snapshot ≤ once/day
+CRAWL_TIMEOUT="${CRAWL_TIMEOUT:-20m}"      # hard cap per crawl slice; a hung Kaggle
+                                           # call must not wedge the lock (see flock)
 RAW="$REPO/raw"
 LOG="$REPO/refresh.log"
 STAMP="$RAW/.slow_stamp"
@@ -47,7 +49,13 @@ if ! flock -n 9; then
 fi
 
 refresh_slice() {  # $1=rank start  $2=rank end
-  "$PY" crawl/refresh_recent.py --top-n "$TOP_N" \
+  # `timeout` is the catch-all for a network hang: the Kaggle SDK call can block
+  # on a dead socket with no timeout, so without this a single stuck request
+  # holds the flock and starves every later cron pass (observed: ~13h wedge).
+  # On expiry timeout exits 124 → set -e aborts the pass → fd 9 closes → lock
+  # frees → the next cron pass starts clean.
+  timeout --signal=TERM --kill-after=30s "$CRAWL_TIMEOUT" \
+    "$PY" crawl/refresh_recent.py --top-n "$TOP_N" \
     --refresh-rank-start "$1" --refresh-rank-end "$2" \
     --out-dir "$RAW" --per-call-delay "$PER_CALL_DELAY"
 }
