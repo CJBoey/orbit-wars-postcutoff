@@ -73,8 +73,15 @@ refresh_slice() {  # $1=rank start  $2=rank end
     refresh_slice 1 "$FAST_END"
     if [ ! -f "$STAMP" ] || [ -n "$(find "$STAMP" -mmin +"$SLOW_EVERY_MIN" 2>/dev/null)" ]; then
       echo "[slow] slice $((FAST_END + 1))..$TOP_N"
-      refresh_slice "$((FAST_END + 1))" "$TOP_N"
-      touch "$STAMP"
+      # Best-effort: the slow slice must NOT block publishing. If it fails or
+      # times out we still snapshot/build/push with fresh top-$FAST_END plus
+      # last-known data for the rest, and retry the slow slice next pass (no
+      # stamp). A failing slow slice once froze the whole dashboard for ~19h.
+      if refresh_slice "$((FAST_END + 1))" "$TOP_N"; then
+        touch "$STAMP"
+      else
+        echo "[slow] slice FAILED/timed out — publishing with last-known data, will retry next pass"
+      fi
     else
       echo "[slow] skipped (still fresh)"
     fi

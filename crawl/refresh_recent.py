@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import socket
 import sys
 import time
 from datetime import datetime, timezone
@@ -45,6 +46,17 @@ from typing import Optional
 
 import requests
 from kaggle.api.kaggle_api_extended import KaggleApi
+
+# The Kaggle SDK issues HTTP calls without a socket timeout, so a single stalled
+# read (e.g. `competition_list_episodes`) can hang the whole refresh forever —
+# observed wedging the slow slice for hours and freezing the dashboard. A global
+# default timeout turns a stall into a `socket.timeout`, which urllib3 surfaces
+# as a `requests` exception that `_refresh_episode_cache` already catches (the
+# sub is marked failed and the crawl continues), so the slice still completes.
+# It is a per-socket-operation timeout (resets on each chunk received), so it
+# only trips on a genuine stall, not on a large-but-streaming response.
+_SOCKET_TIMEOUT_SEC = 120.0
+socket.setdefaulttimeout(_SOCKET_TIMEOUT_SEC)
 
 # fetch_data.py (the full crawler) lives alongside this file and provides the
 # shared helpers (Paths, snapshot_leaderboard, build_summary, rollup_stats, ...).
