@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "20260707T073003Z",
+  "fetched_at_utc": "20260707T080157Z",
   "competition": "orbit-wars",
   "top_n": 100,
   "page_size_requested": 100,
@@ -9,439 +9,421 @@
       "team_id": 15654628,
       "team_name": "Isaiah @ Tufa Labs",
       "submission_date": "2026-06-23T23:16:05.166000+00:00",
-      "score": 1883.8
+      "score": 1885.7
     },
     {
       "team_id": 15649057,
       "team_name": "Jake Will",
       "submission_date": "2026-06-23T08:17:54.613000+00:00",
-      "score": 1777.6
+      "score": 1782.7
     },
     {
       "team_id": 15660477,
       "team_name": "Hober Malloc",
       "submission_date": "2026-06-23T14:19:23.973000+00:00",
-      "score": 1763.6
+      "score": 1771.1
     },
     {
       "team_id": 15719716,
       "team_name": "TonyK",
       "submission_date": "2026-06-23T14:59:19.723000+00:00",
-      "score": 1755.5
+      "score": 1755.9
     },
     {
       "team_id": 15827519,
       "team_name": "Felix M Neumann",
       "submission_date": "2026-06-23T09:10:23.833000+00:00",
-      "score": 1743.8
-    },
-    {
-      "team_id": 15635910,
-      "team_name": "flg",
-      "submission_date": "2026-06-23T09:49:26.360000+00:00",
-      "score": 1716.2
+      "score": 1735.5
     },
     {
       "team_id": 15821351,
       "team_name": "Ender",
       "submission_date": "2026-06-23T15:03:58.056000+00:00",
-      "score": 1714.0
+      "score": 1709.8
+    },
+    {
+      "team_id": 15635910,
+      "team_name": "flg",
+      "submission_date": "2026-06-23T09:49:26.360000+00:00",
+      "score": 1706.1
     },
     {
       "team_id": 15733507,
       "team_name": "Boey",
       "submission_date": "2026-06-23T22:31:00.910000+00:00",
-      "score": 1690.2
+      "score": 1694.7
     },
     {
       "team_id": 15708412,
       "team_name": "Audun Ljone Henriksen",
       "submission_date": "2026-06-23T23:45:55.356000+00:00",
-      "score": 1687.0
+      "score": 1692.1
     },
     {
       "team_id": 15654258,
       "team_name": "Luca",
       "submission_date": "2026-06-23T23:35:58.103000+00:00",
-      "score": 1651.4
+      "score": 1658.4
     },
     {
       "team_id": 15634651,
       "team_name": "M & J & M.ver2",
       "submission_date": "2026-06-23T23:37:24.926000+00:00",
-      "score": 1651.1
+      "score": 1651.0
     },
     {
       "team_id": 15653847,
       "team_name": "Xiangyu Liu",
       "submission_date": "2026-06-23T12:53:34.650000+00:00",
-      "score": 1641.1
+      "score": 1640.8
     },
     {
       "team_id": 15635790,
       "team_name": "Vadasz & Ascalon",
       "submission_date": "2026-06-23T23:56:43.336000+00:00",
-      "score": 1636.0
-    },
-    {
-      "team_id": 15637898,
-      "team_name": "moriiiiiiiiim",
-      "submission_date": "2026-06-23T17:05:41.160000+00:00",
-      "score": 1620.3
-    },
-    {
-      "team_id": 15730576,
-      "team_name": "One Man Wrecking Machine",
-      "submission_date": "2026-06-23T23:47:33.106000+00:00",
-      "score": 1604.0
-    },
-    {
-      "team_id": 15640911,
-      "team_name": "Sheeesh---",
-      "submission_date": "2026-06-23T23:57:54.766000+00:00",
-      "score": 1592.8
+      "score": 1638.4
     },
     {
       "team_id": 15633678,
       "team_name": "dragon warrior",
       "submission_date": "2026-06-23T11:29:56.903000+00:00",
-      "score": 1579.2
+      "score": 1622.3
     },
     {
-      "team_id": 15887510,
-      "team_name": "Orbit Goblins",
-      "submission_date": "2026-06-23T23:40:25.546000+00:00",
-      "score": 1565.1
+      "team_id": 15730576,
+      "team_name": "One Man Wrecking Machine",
+      "submission_date": "2026-06-23T23:47:33.106000+00:00",
+      "score": 1621.7
+    },
+    {
+      "team_id": 15637898,
+      "team_name": "moriiiiiiiiim",
+      "submission_date": "2026-06-23T17:05:41.160000+00:00",
+      "score": 1611.2
+    },
+    {
+      "team_id": 15640911,
+      "team_name": "Sheeesh---",
+      "submission_date": "2026-06-23T23:57:54.766000+00:00",
+      "score": 1565.8
     },
     {
       "team_id": 15680068,
       "team_name": "Azat Akhtyamov",
       "submission_date": "2026-06-23T23:52:34.790000+00:00",
-      "score": 1560.5
-    },
-    {
-      "team_id": 16258800,
-      "team_name": "Tufaben",
-      "submission_date": "2026-06-23T23:38:23.760000+00:00",
-      "score": 1540.5
+      "score": 1563.7
     },
     {
       "team_id": 15665575,
       "team_name": "Slawek Biel",
       "submission_date": "2026-06-23T22:04:37.016000+00:00",
-      "score": 1537.0
-    },
-    {
-      "team_id": 15633688,
-      "team_name": "Artem",
-      "submission_date": "2026-06-23T23:45:08.620000+00:00",
-      "score": 1536.6
-    },
-    {
-      "team_id": 15917496,
-      "team_name": "Gregor Lied",
-      "submission_date": "2026-06-23T22:19:47.470000+00:00",
-      "score": 1535.1
+      "score": 1557.8
     },
     {
       "team_id": 15636758,
       "team_name": "213tubo",
       "submission_date": "2026-06-23T14:27:52.916000+00:00",
-      "score": 1532.9
+      "score": 1547.8
+    },
+    {
+      "team_id": 16258800,
+      "team_name": "Tufaben",
+      "submission_date": "2026-06-23T23:38:23.760000+00:00",
+      "score": 1539.4
+    },
+    {
+      "team_id": 15887510,
+      "team_name": "Orbit Goblins",
+      "submission_date": "2026-06-23T23:40:25.546000+00:00",
+      "score": 1539.3
     },
     {
       "team_id": 16375667,
       "team_name": "LuckyXC&me",
       "submission_date": "2026-06-23T05:05:44.490000+00:00",
-      "score": 1527.2
+      "score": 1533.6
     },
     {
-      "team_id": 16272370,
-      "team_name": "jonathan breitgand",
-      "submission_date": "2026-06-23T02:25:27.970000+00:00",
-      "score": 1503.1
+      "team_id": 15633688,
+      "team_name": "Artem",
+      "submission_date": "2026-06-23T23:45:08.620000+00:00",
+      "score": 1532.3
+    },
+    {
+      "team_id": 15917496,
+      "team_name": "Gregor Lied",
+      "submission_date": "2026-06-23T22:19:47.470000+00:00",
+      "score": 1518.5
     },
     {
       "team_id": 16098523,
       "team_name": "Yuki Okumura",
       "submission_date": "2026-06-23T08:53:01.326000+00:00",
-      "score": 1500.3
-    },
-    {
-      "team_id": 16239102,
-      "team_name": "Scool",
-      "submission_date": "2026-06-22T14:07:48.163000+00:00",
-      "score": 1488.2
+      "score": 1510.8
     },
     {
       "team_id": 15736895,
       "team_name": "Alan C52",
       "submission_date": "2026-06-23T23:40:35.100000+00:00",
-      "score": 1475.7
+      "score": 1502.9
+    },
+    {
+      "team_id": 16272370,
+      "team_name": "jonathan breitgand",
+      "submission_date": "2026-06-23T02:25:27.970000+00:00",
+      "score": 1499.4
+    },
+    {
+      "team_id": 16239102,
+      "team_name": "Scool",
+      "submission_date": "2026-06-22T14:07:48.163000+00:00",
+      "score": 1490.7
     },
     {
       "team_id": 15636087,
       "team_name": "skalermo",
       "submission_date": "2026-06-23T07:12:48.760000+00:00",
-      "score": 1467.8
+      "score": 1452.4
     },
     {
       "team_id": 15654425,
       "team_name": "typeIIIfairy",
       "submission_date": "2026-06-23T23:09:23.793000+00:00",
-      "score": 1455.4
-    },
-    {
-      "team_id": 16072396,
-      "team_name": "This waiting will kill me!",
-      "submission_date": "2026-06-23T16:52:34.970000+00:00",
-      "score": 1441.6
-    },
-    {
-      "team_id": 15855037,
-      "team_name": "Nebraskinator",
-      "submission_date": "2026-06-23T04:47:56.110000+00:00",
-      "score": 1434.0
+      "score": 1451.7
     },
     {
       "team_id": 15692729,
       "team_name": "vkhydras",
       "submission_date": "2026-06-23T23:30:21.900000+00:00",
-      "score": 1425.7
+      "score": 1448.0
     },
     {
       "team_id": 15746467,
       "team_name": "ma name",
       "submission_date": "2026-06-23T15:45:33.770000+00:00",
-      "score": 1424.4
+      "score": 1442.4
+    },
+    {
+      "team_id": 15855037,
+      "team_name": "Nebraskinator",
+      "submission_date": "2026-06-23T04:47:56.110000+00:00",
+      "score": 1439.1
     },
     {
       "team_id": 15648364,
       "team_name": "bowwowforeach",
       "submission_date": "2026-06-23T23:01:34.653000+00:00",
-      "score": 1423.6
+      "score": 1430.2
     },
     {
-      "team_id": 16074461,
-      "team_name": "Controlvector",
-      "submission_date": "2026-06-09T19:40:11.343000+00:00",
-      "score": 1422.2
-    },
-    {
-      "team_id": 15746413,
-      "team_name": "CPMP Fan",
-      "submission_date": "2026-06-23T16:59:27.240000+00:00",
-      "score": 1411.2
-    },
-    {
-      "team_id": 15636713,
-      "team_name": "kosmostars @ pseudolabeling",
-      "submission_date": "2026-06-23T20:23:35.213000+00:00",
-      "score": 1410.6
-    },
-    {
-      "team_id": 16152622,
-      "team_name": "Dreame1",
-      "submission_date": "2026-06-23T23:57:57.090000+00:00",
-      "score": 1402.1
+      "team_id": 16072396,
+      "team_name": "This waiting will kill me!",
+      "submission_date": "2026-06-23T16:52:34.970000+00:00",
+      "score": 1419.1
     },
     {
       "team_id": 15633381,
       "team_name": "Roche Overflow",
       "submission_date": "2026-06-23T20:04:34.116000+00:00",
-      "score": 1395.2
+      "score": 1415.5
+    },
+    {
+      "team_id": 15636713,
+      "team_name": "kosmostars @ pseudolabeling",
+      "submission_date": "2026-06-23T20:23:35.213000+00:00",
+      "score": 1398.8
+    },
+    {
+      "team_id": 16152622,
+      "team_name": "Dreame1",
+      "submission_date": "2026-06-23T23:57:57.090000+00:00",
+      "score": 1398.1
+    },
+    {
+      "team_id": 16074461,
+      "team_name": "Controlvector",
+      "submission_date": "2026-06-09T19:40:11.343000+00:00",
+      "score": 1397.1
+    },
+    {
+      "team_id": 15746413,
+      "team_name": "CPMP Fan",
+      "submission_date": "2026-06-23T16:59:27.240000+00:00",
+      "score": 1393.3
     },
     {
       "team_id": 15642431,
       "team_name": "Ebi",
       "submission_date": "2026-06-23T07:16:58.523000+00:00",
-      "score": 1375.6
-    },
-    {
-      "team_id": 15833598,
-      "team_name": "Mendrika",
-      "submission_date": "2026-06-23T23:58:39.093000+00:00",
-      "score": 1375.3
+      "score": 1382.0
     },
     {
       "team_id": 15670325,
       "team_name": "CPMP",
       "submission_date": "2026-06-23T23:27:44.316000+00:00",
-      "score": 1363.7
-    },
-    {
-      "team_id": 15717471,
-      "team_name": "unosss",
-      "submission_date": "2026-06-23T23:07:22.676000+00:00",
-      "score": 1352.7
-    },
-    {
-      "team_id": 15636360,
-      "team_name": "SR",
-      "submission_date": "2026-06-23T14:33:00.080000+00:00",
-      "score": 1348.0
+      "score": 1363.6
     },
     {
       "team_id": 16210528,
       "team_name": "Luke Li",
       "submission_date": "2026-06-23T23:41:46.103000+00:00",
-      "score": 1347.0
+      "score": 1361.2
     },
     {
-      "team_id": 15678763,
-      "team_name": "Mooegi",
-      "submission_date": "2026-06-17T23:29:02.006000+00:00",
-      "score": 1327.8
+      "team_id": 15833598,
+      "team_name": "Mendrika",
+      "submission_date": "2026-06-23T23:58:39.093000+00:00",
+      "score": 1353.3
     },
     {
-      "team_id": 15699306,
-      "team_name": "CurveCowboy",
-      "submission_date": "2026-06-20T01:34:24.343000+00:00",
-      "score": 1317.6
-    },
-    {
-      "team_id": 15637676,
-      "team_name": "XtraLearning",
-      "submission_date": "2026-06-23T03:31:15.573000+00:00",
-      "score": 1308.3
-    },
-    {
-      "team_id": 15634434,
-      "team_name": "3Comets",
-      "submission_date": "2026-05-31T08:38:41.506000+00:00",
-      "score": 1306.9
-    },
-    {
-      "team_id": 15745071,
-      "team_name": "Abhyuday",
-      "submission_date": "2026-06-23T22:37:48.700000+00:00",
-      "score": 1303.1
+      "team_id": 15717471,
+      "team_name": "unosss",
+      "submission_date": "2026-06-23T23:07:22.676000+00:00",
+      "score": 1351.1
     },
     {
       "team_id": 16091906,
       "team_name": "cununn",
       "submission_date": "2026-06-23T23:51:21.460000+00:00",
-      "score": 1301.1
+      "score": 1339.0
     },
     {
-      "team_id": 15670705,
-      "team_name": "MartinZiserman",
-      "submission_date": "2026-06-23T21:05:09.666000+00:00",
-      "score": 1300.5
+      "team_id": 15699306,
+      "team_name": "CurveCowboy",
+      "submission_date": "2026-06-20T01:34:24.343000+00:00",
+      "score": 1337.1
     },
     {
-      "team_id": 15764528,
-      "team_name": "Monster",
-      "submission_date": "2026-06-23T19:01:33.860000+00:00",
-      "score": 1295.4
+      "team_id": 15636360,
+      "team_name": "SR",
+      "submission_date": "2026-06-23T14:33:00.080000+00:00",
+      "score": 1333.8
+    },
+    {
+      "team_id": 15678763,
+      "team_name": "Mooegi",
+      "submission_date": "2026-06-17T23:29:02.006000+00:00",
+      "score": 1325.5
+    },
+    {
+      "team_id": 15637676,
+      "team_name": "XtraLearning",
+      "submission_date": "2026-06-23T03:31:15.573000+00:00",
+      "score": 1318.5
+    },
+    {
+      "team_id": 15634434,
+      "team_name": "3Comets",
+      "submission_date": "2026-05-31T08:38:41.506000+00:00",
+      "score": 1307.3
+    },
+    {
+      "team_id": 15745071,
+      "team_name": "Abhyuday",
+      "submission_date": "2026-06-23T22:37:48.700000+00:00",
+      "score": 1303.9
     },
     {
       "team_id": 16080666,
       "team_name": "C404",
       "submission_date": "2026-06-23T22:15:08.980000+00:00",
-      "score": 1291.4
+      "score": 1303.4
     },
     {
-      "team_id": 15660065,
-      "team_name": "Harm Buisman",
-      "submission_date": "2026-06-22T05:08:35.090000+00:00",
-      "score": 1290.3
-    },
-    {
-      "team_id": 15662392,
-      "team_name": "T T",
-      "submission_date": "2026-06-23T22:58:52.300000+00:00",
-      "score": 1279.1
-    },
-    {
-      "team_id": 15787258,
-      "team_name": "Radek Osmulski",
-      "submission_date": "2026-06-16T20:35:04.023000+00:00",
-      "score": 1275.8
-    },
-    {
-      "team_id": 15650087,
-      "team_name": "lolzPPO",
-      "submission_date": "2026-06-21T09:05:11.863000+00:00",
-      "score": 1275.4
+      "team_id": 15670705,
+      "team_name": "MartinZiserman",
+      "submission_date": "2026-06-23T21:05:09.666000+00:00",
+      "score": 1298.2
     },
     {
       "team_id": 15633624,
       "team_name": "Guanshuo Xu",
       "submission_date": "2026-06-23T11:31:52.706000+00:00",
-      "score": 1272.8
+      "score": 1289.1
     },
     {
-      "team_id": 15640509,
-      "team_name": "Katasonov Eugene",
-      "submission_date": "2026-06-23T17:46:14.433000+00:00",
-      "score": 1268.6
+      "team_id": 15764528,
+      "team_name": "Monster",
+      "submission_date": "2026-06-23T19:01:33.860000+00:00",
+      "score": 1286.3
     },
     {
-      "team_id": 15637383,
-      "team_name": "Shun_PI",
-      "submission_date": "2026-06-22T12:13:29.920000+00:00",
-      "score": 1259.2
+      "team_id": 15660065,
+      "team_name": "Harm Buisman",
+      "submission_date": "2026-06-22T05:08:35.090000+00:00",
+      "score": 1284.2
+    },
+    {
+      "team_id": 15650087,
+      "team_name": "lolzPPO",
+      "submission_date": "2026-06-21T09:05:11.863000+00:00",
+      "score": 1279.0
+    },
+    {
+      "team_id": 15662392,
+      "team_name": "T T",
+      "submission_date": "2026-06-23T22:58:52.300000+00:00",
+      "score": 1275.3
     },
     {
       "team_id": 16100965,
       "team_name": "luwulaoyabohomosugai",
       "submission_date": "2026-06-12T17:08:33.460000+00:00",
-      "score": 1258.6
+      "score": 1275.2
+    },
+    {
+      "team_id": 15787258,
+      "team_name": "Radek Osmulski",
+      "submission_date": "2026-06-16T20:35:04.023000+00:00",
+      "score": 1268.7
+    },
+    {
+      "team_id": 15637383,
+      "team_name": "Shun_PI",
+      "submission_date": "2026-06-22T12:13:29.920000+00:00",
+      "score": 1261.3
     },
     {
       "team_id": 15818775,
       "team_name": "\u043c\u043e\u043f \u043c\u0430\u043d\u043a\u0438",
       "submission_date": "2026-06-22T10:38:15.170000+00:00",
-      "score": 1258.1
+      "score": 1259.8
+    },
+    {
+      "team_id": 15640509,
+      "team_name": "Katasonov Eugene",
+      "submission_date": "2026-06-23T17:46:14.433000+00:00",
+      "score": 1259.4
     },
     {
       "team_id": 15634574,
       "team_name": "Nandodemo",
       "submission_date": "2026-06-23T20:33:55.580000+00:00",
-      "score": 1256.9
+      "score": 1257.6
     },
     {
-      "team_id": 15842419,
-      "team_name": "Tim Krige",
-      "submission_date": "2026-06-23T23:46:23.236000+00:00",
-      "score": 1256.8
+      "team_id": 15919810,
+      "team_name": "Jonathan Wang2022",
+      "submission_date": "2026-06-23T05:30:28.153000+00:00",
+      "score": 1253.2
     },
     {
-      "team_id": 15634588,
-      "team_name": "aaa",
-      "submission_date": "2026-06-23T12:19:56.323000+00:00",
-      "score": 1255.5
+      "team_id": 15950221,
+      "team_name": "SiestaGuru",
+      "submission_date": "2026-06-23T21:52:57.103000+00:00",
+      "score": 1252.9
     },
     {
       "team_id": 15649802,
       "team_name": "Maruichi01",
       "submission_date": "2026-06-17T00:25:11.763000+00:00",
-      "score": 1253.1
+      "score": 1252.1
     },
     {
-      "team_id": 15635057,
-      "team_name": "Orbit Magnus",
-      "submission_date": "2026-06-23T23:41:42.990000+00:00",
-      "score": 1252.3
-    },
-    {
-      "team_id": 15804661,
-      "team_name": "\uc900\ud658",
-      "submission_date": "2026-06-23T05:34:53.616000+00:00",
-      "score": 1250.8
-    },
-    {
-      "team_id": 15688456,
-      "team_name": "nadhir hasan",
-      "submission_date": "2026-06-23T23:09:57.526000+00:00",
-      "score": 1250.8
-    },
-    {
-      "team_id": 16003625,
-      "team_name": "draven",
-      "submission_date": "2026-06-23T14:54:41.650000+00:00",
-      "score": 1250.2
+      "team_id": 16328574,
+      "team_name": "Rmy",
+      "submission_date": "2026-06-23T18:21:14.783000+00:00",
+      "score": 1250.0
     },
     {
       "team_id": 16027305,
@@ -450,22 +432,22 @@
       "score": 1249.1
     },
     {
-      "team_id": 15638126,
-      "team_name": "sash",
-      "submission_date": "2026-06-15T14:22:59.350000+00:00",
+      "team_id": 15635057,
+      "team_name": "Orbit Magnus",
+      "submission_date": "2026-06-23T23:41:42.990000+00:00",
       "score": 1248.9
     },
     {
-      "team_id": 16108179,
-      "team_name": "Matt6283",
-      "submission_date": "2026-06-19T21:19:04.770000+00:00",
+      "team_id": 16003625,
+      "team_name": "draven",
+      "submission_date": "2026-06-23T14:54:41.650000+00:00",
       "score": 1248.8
     },
     {
-      "team_id": 15950221,
-      "team_name": "SiestaGuru",
-      "submission_date": "2026-06-23T21:52:57.103000+00:00",
-      "score": 1248.0
+      "team_id": 15842419,
+      "team_name": "Tim Krige",
+      "submission_date": "2026-06-23T23:46:23.236000+00:00",
+      "score": 1247.9
     },
     {
       "team_id": 15737623,
@@ -474,52 +456,70 @@
       "score": 1247.3
     },
     {
-      "team_id": 16313890,
-      "team_name": "Man Penguin",
-      "submission_date": "2026-06-22T20:41:08.273000+00:00",
-      "score": 1246.9
-    },
-    {
       "team_id": 16295026,
       "team_name": "AyFukushima",
       "submission_date": "2026-06-18T12:15:38.990000+00:00",
-      "score": 1246.7
+      "score": 1246.9
     },
     {
-      "team_id": 16328574,
-      "team_name": "Rmy",
-      "submission_date": "2026-06-23T18:21:14.783000+00:00",
-      "score": 1245.6
-    },
-    {
-      "team_id": 15919810,
-      "team_name": "Jonathan Wang2022",
-      "submission_date": "2026-06-23T05:30:28.153000+00:00",
-      "score": 1244.3
-    },
-    {
-      "team_id": 15709872,
-      "team_name": "DONJYARAHOI",
-      "submission_date": "2026-06-23T22:35:36.113000+00:00",
-      "score": 1243.9
-    },
-    {
-      "team_id": 15940221,
-      "team_name": "Roy Lo TW",
-      "submission_date": "2026-06-23T23:49:33.176000+00:00",
-      "score": 1243.0
-    },
-    {
-      "team_id": 15654443,
-      "team_name": "ShikharGupta",
-      "submission_date": "2026-06-23T23:11:26.320000+00:00",
-      "score": 1242.5
+      "team_id": 15634588,
+      "team_name": "aaa",
+      "submission_date": "2026-06-23T12:19:56.323000+00:00",
+      "score": 1246.8
     },
     {
       "team_id": 15662979,
       "team_name": "jythow [ :breach: ]",
       "submission_date": "2026-06-23T22:25:50.993000+00:00",
-      "score": 1242.1
+      "score": 1246.5
+    },
+    {
+      "team_id": 15654443,
+      "team_name": "ShikharGupta",
+      "submission_date": "2026-06-23T23:11:26.320000+00:00",
+      "score": 1244.7
+    },
+    {
+      "team_id": 15940221,
+      "team_name": "Roy Lo TW",
+      "submission_date": "2026-06-23T23:49:33.176000+00:00",
+      "score": 1244.4
+    },
+    {
+      "team_id": 15709872,
+      "team_name": "DONJYARAHOI",
+      "submission_date": "2026-06-23T22:35:36.113000+00:00",
+      "score": 1243.8
+    },
+    {
+      "team_id": 16313890,
+      "team_name": "Man Penguin",
+      "submission_date": "2026-06-22T20:41:08.273000+00:00",
+      "score": 1242.6
+    },
+    {
+      "team_id": 15804661,
+      "team_name": "\uc900\ud658",
+      "submission_date": "2026-06-23T05:34:53.616000+00:00",
+      "score": 1242.0
+    },
+    {
+      "team_id": 16025940,
+      "team_name": "saharan",
+      "submission_date": "2026-06-23T18:45:33.926000+00:00",
+      "score": 1239.8
+    },
+    {
+      "team_id": 16108179,
+      "team_name": "Matt6283",
+      "submission_date": "2026-06-19T21:19:04.770000+00:00",
+      "score": 1239.8
+    },
+    {
+      "team_id": 15942702,
+      "team_name": "pantheon of ducks \ud83e\udd86",
+      "submission_date": "2026-06-23T12:11:22.030000+00:00",
+      "score": 1239.5
     },
     {
       "team_id": 16149752,
@@ -528,46 +528,46 @@
       "score": 1239.3
     },
     {
-      "team_id": 16025940,
-      "team_name": "saharan",
-      "submission_date": "2026-06-23T18:45:33.926000+00:00",
-      "score": 1237.1
-    },
-    {
-      "team_id": 16135182,
-      "team_name": "lllleeeo",
-      "submission_date": "2026-06-23T17:02:30.440000+00:00",
-      "score": 1236.6
-    },
-    {
-      "team_id": 15854290,
-      "team_name": "snehal",
-      "submission_date": "2026-06-23T23:55:35.513000+00:00",
-      "score": 1235.3
-    },
-    {
-      "team_id": 15942702,
-      "team_name": "pantheon of ducks \ud83e\udd86",
-      "submission_date": "2026-06-23T12:11:22.030000+00:00",
-      "score": 1234.9
-    },
-    {
       "team_id": 16087707,
       "team_name": "gugugaga",
       "submission_date": "2026-06-23T03:12:40.060000+00:00",
-      "score": 1234.6
-    },
-    {
-      "team_id": 15654920,
-      "team_name": "linrock",
-      "submission_date": "2026-06-23T23:33:43.070000+00:00",
-      "score": 1234.5
+      "score": 1239.1
     },
     {
       "team_id": 16269510,
       "team_name": "ksyehh",
       "submission_date": "2026-06-20T10:01:49.836000+00:00",
-      "score": 1234.4
+      "score": 1238.9
+    },
+    {
+      "team_id": 15654920,
+      "team_name": "linrock",
+      "submission_date": "2026-06-23T23:33:43.070000+00:00",
+      "score": 1237.8
+    },
+    {
+      "team_id": 15688456,
+      "team_name": "nadhir hasan",
+      "submission_date": "2026-06-23T23:09:57.526000+00:00",
+      "score": 1237.6
+    },
+    {
+      "team_id": 15974464,
+      "team_name": "Akarsh kumar shukla",
+      "submission_date": "2026-06-20T11:52:04.086000+00:00",
+      "score": 1236.9
+    },
+    {
+      "team_id": 15662342,
+      "team_name": "Gerar Del Toro",
+      "submission_date": "2026-06-23T23:48:59.696000+00:00",
+      "score": 1235.8
+    },
+    {
+      "team_id": 15638126,
+      "team_name": "sash",
+      "submission_date": "2026-06-15T14:22:59.350000+00:00",
+      "score": 1235.4
     },
     {
       "team_id": 16358788,
@@ -576,28 +576,28 @@
       "score": 1233.4
     },
     {
-      "team_id": 15974464,
-      "team_name": "Akarsh kumar shukla",
-      "submission_date": "2026-06-20T11:52:04.086000+00:00",
-      "score": 1232.4
-    },
-    {
-      "team_id": 15662342,
-      "team_name": "Gerar Del Toro",
-      "submission_date": "2026-06-23T23:48:59.696000+00:00",
-      "score": 1231.4
-    },
-    {
-      "team_id": 16044785,
-      "team_name": "Brotisserie",
-      "submission_date": "2026-06-23T22:36:23.870000+00:00",
-      "score": 1231.3
+      "team_id": 16135182,
+      "team_name": "lllleeeo",
+      "submission_date": "2026-06-23T17:02:30.440000+00:00",
+      "score": 1232.0
     },
     {
       "team_id": 15708470,
       "team_name": "monnu",
       "submission_date": "2026-06-23T16:39:41.586000+00:00",
-      "score": 1227.6
+      "score": 1231.4
+    },
+    {
+      "team_id": 15854290,
+      "team_name": "snehal",
+      "submission_date": "2026-06-23T23:55:35.513000+00:00",
+      "score": 1230.8
+    },
+    {
+      "team_id": 15970052,
+      "team_name": "ImGonnaDie",
+      "submission_date": "2026-06-23T23:58:28.656000+00:00",
+      "score": 1227.3
     },
     {
       "team_id": 15922086,
