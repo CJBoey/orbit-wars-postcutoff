@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "20260708T003213Z",
+  "fetched_at_utc": "20260708T010003Z",
   "competition": "orbit-wars",
   "top_n": 100,
   "page_size_requested": 100,
@@ -115,7 +115,7 @@
     },
     {
       "team_id": 15887510,
-      "team_name": "Orbit Goblins",
+      "team_name": "Golden Orbit Goblins",
       "submission_date": "2026-06-23T23:40:25.546000+00:00",
       "score": 1575.5
     },
